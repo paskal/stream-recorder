@@ -12,6 +12,9 @@ RUN cd app && go build -o /build/streamrecorder -ldflags "-X main.revision=${ver
 
 FROM umputun/baseimage:app-latest
 
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#docker
+LABEL org.opencontainers.image.source="https://github.com/radio-t/stream-recorder"
+
 COPY --from=build /build/streamrecorder /srv/streamrecorder
 RUN chown -R app:app /srv
 
